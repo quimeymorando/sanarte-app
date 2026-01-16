@@ -24,6 +24,7 @@ export interface UserProfile {
   isPremium: boolean;
   xp: number;
   level: number;
+  role?: 'user' | 'admin';
   badges: string[];
   dailyMessageCount: number;
   lastMessageDate: string;
@@ -36,6 +37,7 @@ export interface UserProfile {
 export interface SymptomLogEntry {
   id: string;
   date: string;
+  symptom_name?: string; // Nombre del síntoma
   intensity: number; // 1 to 10
   duration: string;
   notes: string;

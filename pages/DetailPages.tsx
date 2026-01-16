@@ -255,7 +255,7 @@ export const SymptomDetailPage: React.FC = () => {
       const shareData = {
          title: `SanArte: ${data.name}`,
          text: `✨ He descubierto el mensaje emocional de "${data.name}" en SanArte:\n\n"${data.shortDefinition}"\n\nDescubre tu capacidad de autosanación aquí:`,
-         url: 'https://sanarte.vercel.app',
+         url: `${window.location.origin}/share/${encodeURIComponent(data.name)}`,
       };
 
       try {

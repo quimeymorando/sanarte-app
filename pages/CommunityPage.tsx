@@ -20,6 +20,7 @@ interface Intention {
   theme: 'healing' | 'gratitude' | 'release' | 'feedback';
   timestamp: Date;
   comments: Comment[];
+  user_id?: string;
 }
 
 export const CommunityPage: React.FC = () => {
@@ -245,7 +246,7 @@ export const CommunityPage: React.FC = () => {
   };
 
   return (
-    <div className="flex-1 w-full min-h-screen pb-24 pt-20 bg-gradient-to-b from-indigo-50/50 to-white dark:from-[#1a2c32] dark:to-[#101e22]">
+    <div className="flex-1 w-full min-h-screen pb-24 pt-32 bg-gradient-to-b from-indigo-50/50 to-white dark:from-[#1a2c32] dark:to-[#101e22]">
       {/* Header */}
       <div className="relative overflow-hidden bg-primary/10 dark:bg-primary/5 py-12 px-6 text-center">
         <div className="absolute top-0 left-1/4 w-64 h-64 bg-primary/20 rounded-full blur-3xl -translate-y-1/2 pointer-events-none"></div>
@@ -372,22 +373,7 @@ export const CommunityPage: React.FC = () => {
                 "{item.text}"
               </p>
 
-              {/* Delete Intention Button */}
-              {user && item.isUser && (
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    if (window.confirm('¿Eliminar esta publicación?')) {
-                      communityService.deleteIntention(item.id).then(() => {
-                        setIntentions(prev => prev.filter(i => i.id !== item.id));
-                      }).catch(() => alert('Error al eliminar'));
-                    }
-                  }}
-                  className="absolute top-4 right-4 text-gray-300 hover:text-red-500 p-2"
-                >
-                  <span className="material-symbols-outlined">delete</span>
-                </button>
-              )}
+
 
               <div className="flex items-center gap-6 pt-4 border-t border-gray-50 dark:border-gray-700/50">
                 {/* Candle Button */}
@@ -407,6 +393,27 @@ export const CommunityPage: React.FC = () => {
                   <span className={`material-symbols-outlined text-2xl group-hover:scale-110 transition-transform ${item.loves > 0 ? 'text-red-500 filled' : ''}`}>favorite</span>
                   <span className={`text-xs font-bold ${item.loves > 0 ? 'text-red-500' : ''}`}>{item.loves || 'Amar'}</span>
                 </button>
+
+                {/* Delete Intention Button - Footer */}
+                {/* Delete Intention Button - Footer */}
+                {/* Admin or Owner check */}
+                {((user?.role === 'admin') || item.isUser || (user && item.user_id === user?.id)) && (
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      if (window.confirm('¿Eliminar esta publicación?')) {
+                        communityService.deleteIntention(item.id).then(() => {
+                          setIntentions(prev => prev.filter(i => i.id !== item.id));
+                        }).catch(() => alert('Error al eliminar'));
+                      }
+                    }}
+                    className="flex items-center gap-2 text-gray-400 hover:text-red-500 transition-colors group ml-auto sm:ml-0"
+                    title="Eliminar publicación"
+                  >
+                    <span className="material-symbols-outlined text-2xl group-hover:scale-110 transition-transform text-red-400/70 group-hover:text-red-500">delete</span>
+                    <span className="text-xs font-bold hidden sm:inline text-red-400/70 group-hover:text-red-500">Eliminar</span>
+                  </button>
+                )}
 
                 {/* Comment Toggle */}
                 <button
@@ -430,10 +437,10 @@ export const CommunityPage: React.FC = () => {
                             <span className={`text-xs font-bold ${comment.authorName ? 'text-primary' : 'text-gray-500'}`}>
                               {comment.authorName || 'Alma Anónima'}
                             </span>
-                            {/* Delete Button (Only for owner) */}
-                            {user && (comment.userId === user.id || item.isUser) && (
-                              <button onClick={() => handleDeleteComment(item.id, comment.id)} className="text-gray-300 hover:text-red-500 transition-colors p-1" title="Eliminar">
-                                <span className="material-symbols-outlined text-[16px] font-bold">close</span>
+                            {/* Delete Button (Only for owner or admin) */}
+                            {user && (user.role === 'admin' || comment.userId === user.id || item.isUser) && (
+                              <button onClick={() => handleDeleteComment(item.id, comment.id)} className="text-gray-300 hover:text-red-500 transition-colors p-1" title={user.role === 'admin' ? "Eliminar (Admin)" : "Eliminar"}>
+                                <span className={`material-symbols-outlined text-[16px] font-bold ${user.role === 'admin' ? 'text-red-300' : ''}`}>close</span>
                               </button>
                             )}
                           </div>

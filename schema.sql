@@ -12,6 +12,7 @@ create table profiles (
   is_premium boolean default false,
   xp integer default 0,
   level integer default 1,
+  role text default 'user',
   badges text[] default '{}',
   daily_message_count integer default 0,
   last_message_date text, 
@@ -124,6 +125,7 @@ begin
     false,
     0,
     1,
+    'user',
     '{}',
     0,
     to_char(now(), 'Dy Mon DD YYYY')

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { supabase } from './supabaseClient';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navigation from './components/Navigation';
@@ -7,10 +8,12 @@ import LandingPage from './pages/LandingPage';
 import { HomePage, SearchPage } from './pages/HomePages';
 import { CommunityPage } from './pages/CommunityPage';
 import { SymptomDetailPage } from './pages/DetailPages';
-import { FavoritesPage, RoutinesPage, HistoryPage, ProfilePage } from './pages/UserPages';
+import { FavoritesPage, RoutinesPage, ProfilePage } from './pages/UserPages';
+import { JournalPage } from './pages/JournalPage';
 import PrivacyPage from './pages/PrivacyPage';
 import TermsPage from './pages/TermsPage';
 import UpgradePage from './pages/UpgradePage';
+import { SharedResultPage } from './pages/SharedResultPage';
 import { useRoutineNotifications } from './hooks/useRoutineNotifications';
 import ProtectedRoute from './components/ProtectedRoute';
 import { NotificationManager } from './components/NotificationManager';
@@ -25,7 +28,21 @@ import { Analytics } from "@vercel/analytics/react"
 const App: React.FC = () => {
   // Initialize notification checker
   useRoutineNotifications();
+  // Check for auth redirects
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      // If user just signed in (e.g. from email link), redirect to home if on landing
+      if (event === 'SIGNED_IN' && session) {
+        const currentPath = window.location.pathname;
+        if (currentPath === '/' || currentPath === '/login') {
+          // Use window.location to ensure clean state or we could use navigation if we had access to router
+          window.location.replace('/home');
+        }
+      }
+    });
 
+    return () => subscription.unsubscribe();
+  }, []);
   return (
     <ThemeProvider>
       <ErrorBoundary>
@@ -43,14 +60,16 @@ const App: React.FC = () => {
               <Route path="/community" element={<ProtectedRoute><CommunityPage /></ProtectedRoute>} />
               <Route path="/symptom-detail" element={<ProtectedRoute><SymptomDetailPage /></ProtectedRoute>} />
               <Route path="/favorites" element={<ProtectedRoute><FavoritesPage /></ProtectedRoute>} />
+
               <Route path="/routines" element={<ProtectedRoute><RoutinesPage /></ProtectedRoute>} />
-              <Route path="/history" element={<ProtectedRoute><HistoryPage /></ProtectedRoute>} />
+              <Route path="/journal" element={<ProtectedRoute><JournalPage /></ProtectedRoute>} />
               <Route path="/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
               <Route path="/upgrade" element={<ProtectedRoute><UpgradePage /></ProtectedRoute>} />
 
               {/* Public Pages */}
               <Route path="/privacy" element={<PrivacyPage />} />
               <Route path="/terms" element={<TermsPage />} />
+              <Route path="/share/:id" element={<SharedResultPage />} />
             </Routes>
             <Navigation />
           </div>

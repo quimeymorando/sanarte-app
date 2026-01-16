@@ -15,6 +15,7 @@ const mapProfileToUser = (profile: any): UserProfile => ({
   isPremium: profile.is_premium,
   xp: profile.xp,
   level: profile.level,
+  role: profile.role || 'user',
   badges: profile.badges || [],
   dailyMessageCount: profile.daily_message_count,
   lastMessageDate: profile.last_message_date,
@@ -74,7 +75,8 @@ export const authService = {
       email,
       password,
       options: {
-        data: { name } // Esto lo usa el Trigger para llenar la tabla profiles
+        data: { name }, // Esto lo usa el Trigger para llenar la tabla profiles
+        emailRedirectTo: window.location.origin // Ensure redirection back to the app
       }
     });
 

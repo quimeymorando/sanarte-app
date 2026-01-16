@@ -150,25 +150,62 @@ export const communityService = {
         const { data: { user } } = await supabase.auth.getUser();
         if (!user) throw new Error('Debes iniciar sesión');
 
-        const { error } = await supabase
+        // Check if user is comment owner OR intention owner
+        // 1. Get comment info including intention_id
+        const { data: comment, error: fetchError } = await supabase
             .from('comments')
-            .delete()
+            .select('user_id, intention_id')
             .eq('id', commentId)
-            .eq('user_id', user.id); // Security: only delete own comments
+            .single();
 
-        if (error) throw error;
+        if (fetchError || !comment) throw new Error('Comentario no encontrado');
+
+        // Check if admin
+        const { data: profile } = await supabase.from('profiles').select('role').eq('id', user.id).single();
+        if (profile?.role === 'admin') {
+            const { error } = await supabase.from('comments').delete().eq('id', commentId);
+            if (error) throw error;
+            return;
+        }
+
+        // 2. If user is comment owner, simple delete
+        if (comment.user_id === user.id) {
+            const { error } = await supabase.from('comments').delete().eq('id', commentId);
+            if (error) throw error;
+            return;
+        }
+
+        // 3. If not, check if user is intention owner
+        const { data: intention } = await supabase
+            .from('intentions')
+            .select('user_id')
+            .eq('id', comment.intention_id)
+            .single();
+
+        if (intention && intention.user_id === user.id) {
+            const { error } = await supabase.from('comments').delete().eq('id', commentId);
+            if (error) throw error;
+            return;
+        }
+
+        throw new Error('No tienes permiso para eliminar este comentario');
     },
 
     deleteIntention: async (intentionId: string) => {
         const { data: { user } } = await supabase.auth.getUser();
         if (!user) throw new Error('Debes iniciar sesión');
 
-        const { error } = await supabase
-            .from('intentions')
-            .delete()
-            .eq('id', intentionId)
-            .eq('user_id', user.id);
+        // Check if admin
+        const { data: profile } = await supabase.from('profiles').select('role').eq('id', user.id).single();
 
+        let query = supabase.from('intentions').delete().eq('id', intentionId);
+
+        // If NOT admin, enforce ownership
+        if (profile?.role !== 'admin') {
+            query = query.eq('user_id', user.id);
+        }
+
+        const { error } = await query;
         if (error) throw error;
     }
 };
@@ -199,6 +236,7 @@ export const historyService = {
         return data.map((d: any) => ({
             id: d.id,
             date: d.date,
+            symptom_name: d.symptom_name,
             intensity: d.intensity,
             duration: d.duration,
             notes: d.notes

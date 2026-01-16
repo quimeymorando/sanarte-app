@@ -10,7 +10,7 @@ const Navigation: React.FC = () => {
   if (location.pathname === '/') return null;
 
   // Pages where the user might feel trapped on Desktop (Sections)
-  const showDesktopBack = ['/community', '/routines', '/history', '/profile', '/favorites'].includes(location.pathname);
+  const showDesktopBack = ['/community', '/routines', '/journal', '/profile', '/favorites'].includes(location.pathname);
 
   return (
     <>
@@ -34,9 +34,9 @@ const Navigation: React.FC = () => {
             <span className="material-symbols-outlined text-lg">calendar_today</span>
             Rutinas
           </Link>
-          <Link to="/history" className={`flex items-center gap-2 text-sm font-bold transition-colors ${isActive('/history')}`}>
-            <span className="material-symbols-outlined text-lg">history</span>
-            Historial
+          <Link to="/journal" className={`flex items-center gap-2 text-sm font-bold transition-colors ${isActive('/journal')}`}>
+            <span className="material-symbols-outlined text-lg">book_2</span>
+            Diario
           </Link>
           <Link to="/profile" className={`flex items-center gap-2 text-sm font-bold transition-colors ${isActive('/profile')}`}>
             <div className="size-8 rounded-full bg-primary/10 flex items-center justify-center">
@@ -61,9 +61,9 @@ const Navigation: React.FC = () => {
           <span className="material-symbols-outlined">calendar_today</span>
           <span className="text-[10px]">Rutinas</span>
         </Link>
-        <Link to="/history" className={`flex flex-col items-center gap-1 ${isActive('/history')}`}>
-          <span className="material-symbols-outlined">history</span>
-          <span className="text-[10px]">Historial</span>
+        <Link to="/journal" className={`flex flex-col items-center gap-1 ${isActive('/journal')}`}>
+          <span className="material-symbols-outlined">book_2</span>
+          <span className="text-[10px]">Diario</span>
         </Link>
         <Link to="/profile" className={`flex flex-col items-center gap-1 ${isActive('/profile')}`}>
           <span className="material-symbols-outlined">person</span>

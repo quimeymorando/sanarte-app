@@ -167,7 +167,7 @@ export const HomePage: React.FC = () => {
         </div>
       </div>
 
-      <main className="flex-1 w-full max-w-[1200px] mx-auto px-5 py-6 pt-24 md:pt-24">
+      <main className="flex-1 w-full max-w-[1200px] mx-auto px-5 py-6 pt-32 md:pt-36">
         <div className="mb-6 flex justify-between items-end">
           <div className="flex flex-col gap-1">
 
