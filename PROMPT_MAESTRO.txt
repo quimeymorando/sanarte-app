@@ -37,6 +37,7 @@ INSTRUCCIONES IMPORTANTES:
 2. En "naturalRemedies", prioriza la flora local argentina (Cedrón, Tilo, etc.).
 3. Devuelve UN SOLO BLOQUE DE CÓDIGO JSON (un array [] con los objetos dentro).
 4. No pongas explicaciones previas, solo el JSON.
+5. IMPORTANTE: USA GÉNERO NEUTRO SIEMPRE. Evita dirigirte al usuario como "hijo", "hija", "amigo", "amiga", "el" o "la" consultante. Usa "te", "tu alma", "tu cuerpo", "persona". NO uses artículos definidos innecesarios que marquen género.
 
 A continuación te paso la lista de síntomas a procesar:
 

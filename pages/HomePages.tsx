@@ -171,7 +171,7 @@ export const HomePage: React.FC = () => {
         <div className="mb-6 flex justify-between items-end">
           <div className="flex flex-col gap-1">
 
-            <h1 className="text-[#0d181c] dark:text-white text-2xl md:text-3xl font-black leading-tight tracking-tight">
+            <h1 className="text-[#0d181c] dark:text-white text-2xl md:text-3xl font-black leading-tight tracking-tight text-neon-cyan">
               Hola, {user?.name ? user.name.split(' ')[0] : 'Sanador'} 🌿
             </h1>
             <p className="text-gray-500 dark:text-text-sub text-sm">
@@ -210,7 +210,7 @@ export const HomePage: React.FC = () => {
                   <span className="material-symbols-outlined text-2xl">air</span>
                 </div>
                 <div>
-                  <h3 className="text-lg font-black text-white mb-0.5">Pausa Sagrada</h3>
+                  <h3 className="text-lg font-black text-white mb-0.5 text-neon-green">Pausa Sagrada</h3>
                   <p className="text-white/80 text-xs font-medium max-w-[200px] leading-tight">Técnica de respiración para pánico o ansiedad. Toca el botón y reinicia tu sistema parasimpático.</p>
                 </div>
               </div>

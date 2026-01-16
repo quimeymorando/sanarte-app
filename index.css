@@ -12,7 +12,13 @@ body {
   background: radial-gradient(circle at top right, #0a191e, #050b0d);
 }
 
-h1, h2, h3, h4, h5, h6, .font-heading {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-heading {
   font-family: 'Poppins', sans-serif;
   letter-spacing: -0.02em;
 }
@@ -52,7 +58,10 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 .neon-border::after {
   content: '';
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   border: 1px solid rgba(0, 242, 255, 0.3);
   pointer-events: none;
   border-radius: inherit;
@@ -62,9 +71,11 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 ::-webkit-scrollbar {
   width: 6px;
 }
+
 ::-webkit-scrollbar-track {
-  background: rgba(0,0,0,0.2);
+  background: rgba(0, 0, 0, 0.2);
 }
+
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(to bottom, #00f2ff, #7000ff);
   border-radius: 10px;
@@ -92,15 +103,28 @@ h1, h2, h3, h4, h5, h6, .font-heading {
   text-shadow: 0 0 10px rgba(204, 255, 0, 0.6);
 }
 
-em, i {
+em,
+i {
   font-style: italic;
+  color: #ffffff;
+  /* White text for italics as requested */
+  text-shadow: 0 0 10px rgba(0, 242, 255, 0.4);
+  /* Gentle cyan glow */
+}
+
+/* Base Neon Title Style for H1, H2, H3 if they have .neon-title class or generally */
+h1.text-neon-cyan,
+h2.text-neon-cyan,
+h3.text-neon-cyan,
+.font-heading {
   color: #00f2ff;
-  text-shadow: 0 0 8px rgba(0, 242, 255, 0.3);
+  text-shadow: 0 0 12px rgba(0, 242, 255, 0.6);
 }
 
 strong {
   font-weight: 900;
-  color: inherit; /* Inherit unless specified, or maybe white in dark mode? */
+  color: inherit;
+  /* Inherit unless specified, or maybe white in dark mode? */
 }
 
 .dark strong {
