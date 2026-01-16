@@ -49,7 +49,8 @@ export const CommunityPage: React.FC = () => {
         // We might need to ensure comments structure matches.
         const mappedData: Intention[] = data.map(item => ({
           ...item,
-          // Ensure comments are mapped correctly if structure differs
+          // Re-calculate ownership in client to be safe
+          isUser: item.user_id === u?.id,
           comments: item.comments?.map((c: any) => ({
             id: c.id,
             text: c.text,
@@ -244,7 +245,7 @@ export const CommunityPage: React.FC = () => {
   };
 
   return (
-    <div className="flex-1 w-full min-h-screen pb-24 bg-gradient-to-b from-indigo-50/50 to-white dark:from-[#1a2c32] dark:to-[#101e22]">
+    <div className="flex-1 w-full min-h-screen pb-24 pt-20 bg-gradient-to-b from-indigo-50/50 to-white dark:from-[#1a2c32] dark:to-[#101e22]">
       {/* Header */}
       <div className="relative overflow-hidden bg-primary/10 dark:bg-primary/5 py-12 px-6 text-center">
         <div className="absolute top-0 left-1/4 w-64 h-64 bg-primary/20 rounded-full blur-3xl -translate-y-1/2 pointer-events-none"></div>

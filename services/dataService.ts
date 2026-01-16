@@ -53,6 +53,7 @@ export interface IntentionData {
     candles: number;
     loves: number;
     isUser: boolean;
+    user_id?: string; // Exposed for client-side ownership checks
     theme: 'healing' | 'gratitude' | 'release' | 'feedback';
     timestamp: Date;
     comments?: any[];
@@ -79,6 +80,7 @@ export const communityService = {
             candles: item.candles,
             loves: item.loves,
             isUser: user ? item.user_id === user.id : false,
+            user_id: item.user_id, // Map the ID
             theme: item.theme,
             timestamp: new Date(item.created_at),
             comments: item.comments || []

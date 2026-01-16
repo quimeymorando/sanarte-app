@@ -33,7 +33,7 @@ export const FavoritesPage: React.FC = () => {
   };
 
   return (
-    <div className="flex-1 w-full max-w-7xl mx-auto px-6 py-12 pb-24">
+    <div className="flex-1 w-full max-w-7xl mx-auto px-6 py-12 pt-24 pb-24">
       <h2 className="text-3xl font-black text-gray-900 dark:text-white mb-8 tracking-tight">Mis Favoritos 💖</h2>
       {favorites.length === 0 ? (
         <div className="text-center py-20 bg-gray-50 dark:bg-surface-dark rounded-3xl border border-dashed border-gray-200 dark:border-gray-800">
@@ -111,7 +111,7 @@ export const RoutinesPage: React.FC = () => {
   };
 
   return (
-    <div className="flex-1 w-full max-w-3xl mx-auto px-6 py-12 pb-24">
+    <div className="flex-1 w-full max-w-3xl mx-auto px-6 py-12 pt-24 pb-24">
       {xpAdded && (
         <div className="fixed top-24 left-1/2 -translate-x-1/2 z-50 bg-gray-900 text-white px-6 py-3 rounded-full font-bold flex items-center gap-2 animate-bounce">
           <span>+{xpAdded} XP</span>
@@ -198,7 +198,7 @@ export const HistoryPage: React.FC = () => {
   };
 
   return (
-    <div className="flex-1 w-full max-w-4xl mx-auto px-6 py-12 pb-24">
+    <div className="flex-1 w-full max-w-4xl mx-auto px-6 py-12 pt-24 pb-24">
       <h1 className="text-3xl font-black text-gray-900 dark:text-white mb-8">Tu Historial 🕰️</h1>
       <div className="space-y-4">
         {historyItems.length === 0 ? <p className="text-gray-500">Sin registros.</p> : historyItems.map(item => {
@@ -325,7 +325,7 @@ export const ProfilePage: React.FC = () => {
   ];
 
   return (
-    <div className="flex-1 w-full max-w-4xl mx-auto px-6 py-8 pb-32">
+    <div className="flex-1 w-full max-w-4xl mx-auto px-6 py-8 pt-24 pb-32">
 
       {/* 1. AURA HEADER */}
       <div className="relative mb-12 text-center">
