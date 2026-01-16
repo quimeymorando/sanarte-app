@@ -22,7 +22,7 @@ const Navigation: React.FC = () => {
         </Link>
         <Link to="/community" className={`flex flex-col items-center gap-1 ${isActive('/community')}`}>
           <span className="material-symbols-outlined">diversity_1</span>
-          <span className="text-[10px]">Círculo</span>
+          <span className="text-[10px]">Comunidad</span>
         </Link>
         <Link to="/routines" className={`flex flex-col items-center gap-1 ${isActive('/routines')}`}>
           <span className="material-symbols-outlined">calendar_today</span>
@@ -40,7 +40,7 @@ const Navigation: React.FC = () => {
 
       {/* Desktop Navigation - Back Button for Sections */}
       {showDesktopBack && (
-        <button 
+        <button
           onClick={() => navigate('/home')}
           className="hidden md:flex fixed top-8 left-8 z-[90] bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-300 hover:text-primary dark:hover:text-primary py-3 px-5 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:-translate-x-1 items-center gap-3 font-bold group animate-in fade-in slide-in-from-left-10 duration-500"
         >

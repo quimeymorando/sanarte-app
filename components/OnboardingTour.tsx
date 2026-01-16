@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const STEPS = [
     {
-        title: "¡Bienvenido a SanArte!",
+        title: "¡Te damos la bienvenida a SanArte!",
         description: "Tu refugio digital para sanar cuerpo y alma. Aquí descubrirás el mensaje oculto detrás de cada síntoma físico.",
         icon: "spa",
         color: "text-primary",

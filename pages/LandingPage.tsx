@@ -236,7 +236,7 @@ const LandingPage: React.FC = () => {
 
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
           {[
-            { icon: "psychology", color: "text-primary", title: "Entender", desc: "Descubre el conflicto emocional detrás de tu síntoma con Gemini 2.0 Flash." },
+            { icon: "psychology", color: "text-primary", title: "Entender", desc: "Descubre el conflicto emocional detrás de tu síntoma y su mensaje para ti." },
             { icon: "self_improvement", color: "text-secondary", title: "Sanar", desc: "Meditaciones guiadas y afirmaciones holográficas para reprogramar tu mente." },
             { icon: "local_florist", color: "text-accent", title: "Cuidar", desc: "Remedios naturales y medicina cuántica para apoyar a tu biología." }
           ].map((card, i) => (
@@ -286,7 +286,7 @@ const LandingPage: React.FC = () => {
               <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full -ml-10 -mb-10 blur-xl"></div>
 
               <h3 className="text-3xl font-black text-white relative z-10">
-                {authMode === 'login' ? 'Bienvenido de nuevo' : 'Únete a SanArte'}
+                {authMode === 'login' ? 'Te damos la bienvenida' : 'Únete a SanArte'}
               </h3>
               <p className="text-white/80 font-medium mt-2 relative z-10">
                 {authMode === 'login' ? 'Tu espacio de sanación te espera' : 'Tu viaje de sanación comienza aquí'}

@@ -172,7 +172,7 @@ export const HomePage: React.FC = () => {
           <div className="flex flex-col gap-1">
 
             <h1 className="text-[#0d181c] dark:text-white text-2xl md:text-3xl font-black leading-tight tracking-tight">
-              Bienvenido, {user?.name ? user.name.split(' ')[0] : 'Sanador'} 🌿
+              Hola, {user?.name ? user.name.split(' ')[0] : 'Sanador'} 🌿
             </h1>
             <p className="text-gray-500 dark:text-text-sub text-sm">
               ¿Qué parte de tu alma desea expresarse hoy?
@@ -182,6 +182,22 @@ export const HomePage: React.FC = () => {
 
         {/* AD BANNER */}
         <AdBanner />
+
+        <form onSubmit={handleHomeSearch} className="mb-8 group relative w-full">
+          <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
+            <span className="material-symbols-outlined text-gray-400 group-focus-within:text-primary transition-colors text-xl">search</span>
+          </div>
+          <input
+            type="text"
+            value={homeSearchQuery}
+            onChange={(e) => setHomeSearchQuery(e.target.value)}
+            placeholder="¿Qué siente tu cuerpo?"
+            className="w-full h-14 pl-12 pr-28 rounded-2xl bg-white dark:bg-surface-dark border border-gray-100 dark:border-gray-800 shadow-lg shadow-gray-200/50 dark:shadow-none text-base placeholder-gray-400 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none"
+          />
+          <button type="submit" className="absolute right-2 top-2 bottom-2 bg-primary text-white hover:bg-primary-hover px-6 rounded-xl font-bold uppercase tracking-wider text-[10px] shadow-sm transition-all flex items-center justify-center active:scale-95">
+            Buscar
+          </button>
+        </form>
 
         {/* BREATHE SOS - Improved visual feedback */}
         <div className={`mb-8 w-full rounded-[2rem] p-6 shadow-xl transition-all duration-700 relative overflow-hidden group ${isBreathing ? 'bg-indigo-600 h-[280px]' : 'bg-gradient-to-br from-[#10b981] to-[#059669] h-auto'}`}>
@@ -195,7 +211,7 @@ export const HomePage: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-black text-white mb-0.5">Pausa Sagrada</h3>
-                  <p className="text-white/80 text-xs font-medium">Equilibra tu sistema en 1 min.</p>
+                  <p className="text-white/80 text-xs font-medium max-w-[200px] leading-tight">Técnica de respiración para pánico o ansiedad. Toca el botón y reinicia tu sistema parasimpático.</p>
                 </div>
               </div>
               <button
@@ -230,27 +246,10 @@ export const HomePage: React.FC = () => {
           )}
         </div>
 
-        {/* SEARCH - XP REWARD */}
-        <form onSubmit={handleHomeSearch} className="mb-8 group relative w-full">
-          <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
-            <span className="material-symbols-outlined text-gray-400 group-focus-within:text-primary transition-colors text-xl">search</span>
-          </div>
-          <input
-            type="text"
-            value={homeSearchQuery}
-            onChange={(e) => setHomeSearchQuery(e.target.value)}
-            placeholder="¿Qué siente tu cuerpo?"
-            className="w-full h-14 pl-12 pr-28 rounded-2xl bg-white dark:bg-surface-dark border border-gray-100 dark:border-gray-800 shadow-lg shadow-gray-200/50 dark:shadow-none text-base placeholder-gray-400 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none"
-          />
-          <button type="submit" className="absolute right-2 top-2 bottom-2 bg-primary text-white hover:bg-primary-hover px-6 rounded-xl font-bold uppercase tracking-wider text-[10px] shadow-sm transition-all flex items-center justify-center active:scale-95">
-            Buscar
-          </button>
-        </form>
-
         {/* 2x2 Grid - Polished */}
         <div className="grid grid-cols-2 gap-3 mb-10">
           {[
-            { id: 'community', name: 'Círculo', emoji: '🤝', color: 'bg-pink-50 text-pink-500 border-pink-100', xp: '+10 Luz' },
+            { id: 'community', name: 'Comunidad', emoji: '🤝', color: 'bg-pink-50 text-pink-500 border-pink-100', xp: '+10 Luz' },
             { id: 'favorites', name: 'Favoritos', emoji: '💖', color: 'bg-rose-50 text-rose-500 border-rose-100', xp: 'Ver listado' },
             { id: 'routines', name: 'Rutinas', emoji: '📅', color: 'bg-orange-50 text-orange-500 border-orange-100', xp: '+50 Luz' },
             { id: 'history', name: 'Historial', emoji: '🕰️', color: 'bg-purple-50 text-purple-500 border-purple-100', xp: 'Tu camino' },

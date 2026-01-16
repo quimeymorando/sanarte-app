@@ -75,3 +75,35 @@ h1, h2, h3, h4, h5, h6, .font-heading {
   background-size: 200% auto;
   animation: shimmer 3s infinite linear;
 }
+
+/* Premium Neon & Text Styles */
+.text-neon-cyan {
+  color: #00f2ff;
+  text-shadow: 0 0 10px rgba(0, 242, 255, 0.6);
+}
+
+.text-neon-green {
+  color: #0aff60;
+  text-shadow: 0 0 10px rgba(10, 255, 96, 0.6);
+}
+
+.text-neon-fluo {
+  color: #ccff00;
+  text-shadow: 0 0 10px rgba(204, 255, 0, 0.6);
+}
+
+em, i {
+  font-style: italic;
+  color: #00f2ff;
+  text-shadow: 0 0 8px rgba(0, 242, 255, 0.3);
+}
+
+strong {
+  font-weight: 900;
+  color: inherit; /* Inherit unless specified, or maybe white in dark mode? */
+}
+
+.dark strong {
+  color: #fff;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
