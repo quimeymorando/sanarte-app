@@ -109,18 +109,18 @@ const LandingPage: React.FC = () => {
       <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/80 dark:bg-black/80 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'}`}>
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
           <div className="flex items-center gap-3 cursor-pointer group" onClick={() => window.scrollTo(0, 0)}>
-            <div className="relative group">
-              <div className="absolute inset-0 bg-primary/20 rounded-full blur-[15px] group-hover:bg-primary/40 transition-all"></div>
-              {/* Nuevo Logo Sagrado - Integrado como una gema profesional */}
-              <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center relative z-10 animate-float overflow-hidden shadow-lg border border-white/20">
-                <img
-                  src="/logo_new.png"
-                  alt="SanArte Logo"
-                  className="w-full h-full object-cover"
-                />
-              </div>
+            {/* Logo Vectorial Premium - Sin fondo, puro CSS/SVG */}
+            <div className="relative">
+              <div className="absolute inset-0 bg-primary/40 blur-xl rounded-full opacity-50 group-hover:opacity-80 transition-opacity"></div>
+              <span className="material-symbols-outlined text-5xl text-transparent bg-clip-text bg-gradient-to-br from-primary to-cyan-300 relative z-10 animate-float-slow drop-shadow-[0_0_10px_rgba(0,242,255,0.5)]">
+                spa
+              </span>
             </div>
-            <span className="text-2xl font-black font-heading tracking-tighter text-white neo-glow">SanArte</span>
+            <div className="flex flex-col -space-y-1">
+              <span className="text-2xl font-black font-heading tracking-tight text-white neo-glow group-hover:text-primary-hover transition-colors">
+                San<span className="text-primary italic">Arte</span>
+              </span>
+            </div>
           </div>
           <button
             onClick={openAuth}
